@@ -1,3 +1,5 @@
+// js/colloctions/todos.js
+
 var app = app || {};
 
 // TodoList collection
@@ -21,11 +23,14 @@ var TodoList = Backbone.Collection.extend({
 		return this.without.apply(this, this.completed());
 	},
 
-	// generate order number for the next todo item
+	// generate order number for the new todo item
 	nextOrder: function(){
+		// if no item exists, order = 1
 		if (!this.length){
 			return 1;
 		}
+
+		// if there is one or more items, new order = last order + 1
 		return this.last().get('order') + 1;
 	},
 

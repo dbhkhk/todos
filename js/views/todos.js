@@ -14,7 +14,9 @@ app.TodoView = Backbone.View.extend({
 	},
 
 	initialize: function(){
-		this.listenTo(this.model, 'change', this.render); // listen to model's change and render
+		// {model: todo} will be passed in when a TodoView is created
+		// listen to model's change and render
+		this.listenTo(this.model, 'change', this.render);
 	},
 
 	render: function(){

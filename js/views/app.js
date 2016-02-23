@@ -5,22 +5,22 @@ var app = app || {};
 // app.AppView is top-level view
 app.AppView = Backbone.View.extend({
 
-	el: '#todoapp',
+	el: '.todoapp',
 
 	// template for the line of statistics at the bottom of the app
 	statsTemplate: _.template( $('#stats-template').html() ),
 
 	events: {
-		'keypress #new-todo':     'createOnEnter', // create a new item when enter is pressed during input
-		'click #clear-completed': 'clearCompleted', // clear completed items when 'clear completed' button is clicked
-		'click #toggle-all':      'toggleAllComplete' // toggle all items' state when 'mark all' checkbox is clicked
+		'keypress .new-todo':     'createOnEnter', // create a new item when enter is pressed during input
+		'click .clear-completed': 'clearCompleted', // clear completed items when 'clear completed' button is clicked
+		'click .toggle-all':      'toggleAllComplete' // toggle all items' state when 'mark all' checkbox is clicked
 	},
 
 	initialize: function(){
-		this.allCheckbox = this.$('#toggle-all')[0]; // need [0] so that this.allCheckbox.checked can be used
-		this.$input = this.$('#new-todo');
-		this.$footer = this.$('#footer');
-		this.$main = this.$('#main');
+		this.allCheckbox = this.$('.toggle-all')[0]; // need [0] so that this.allCheckbox.checked can be used
+		this.$input = this.$('.new-todo');
+		this.$footer = this.$('.footer');
+		this.$main = this.$('.main');
 
 		this.listenTo(app.Todos, 'add', this.addOne);
 		this.listenTo(app.Todos, 'reset', this.addAll);
@@ -49,7 +49,7 @@ app.AppView = Backbone.View.extend({
 				remaining: remaining
 			}));
 
-			this.$('#filters li a')
+			this.$('.filters li a')
 				.removeClass('selected') // set all categories as not selected
 				.filter('[href="#/' + (app.TodoFilter || '') + '"]') // either one category is selected or nothing is selected
 				.addClass('selected');
@@ -68,12 +68,12 @@ app.AppView = Backbone.View.extend({
 	// and appending its element to the '<ul>'
 	addOne: function(todo){
 		var view = new app.TodoView({model: todo});
-		$('#todo-list').append(view.render().el); // when the view changes, the appended element will change accordingly
+		$('.todo-list').append(view.render().el); // when the view changes, the appended element will change accordingly
 	},
 
 	// add all items in the Todos collection at once
 	addAll: function(){
-		this.$('#todo-list').html('');
+		this.$('.todo-list').html('');
 		app.Todos.each(this.addOne, this);
 	},
 

@@ -3,31 +3,32 @@
 var app = app || {};
 
 app.TodoView = Backbone.View.extend({
-	tagName: 'li',
+	tagName: 'li', // create new <li>
 
 	template: _.template( $('#item-template').html() ),
 
 	events: {
-		'dbclick label':  'edit',
-		'keypress .edit': 'updateOnEnter',
+		'dbclick label':  'edit', // double click on item title to edit the title
+		'keypress .edit': 'updateOnEnter', // either hit enter or 'blur' input will call updateOnEnter
 		'blur .edit':     'close'
 	},
 
 	initialize: function(){
-		this.listenTo(this.model, 'change', this.render);
+		this.listenTo(this.model, 'change', this.render); // listen to model's change and render
 	},
 
 	render: function(){
 		this.$el.html( this.template( this.model.attributes ) );
-		this.$input = this.$('.edit');
+		this.$input = this.$('.edit'); // update this.$input once render is called
 		return this;
 	},
 
 	edit: function(){
-		this.$el.addClass('editing');
-		this.$input.focus();
+		this.$el.addClass('editing'); // give the item 'editing' style
+		this.$input.focus(); // focus on input box
 	},
 
+	// if new input exists, update item title and remove 'editing' style
 	close: function(){
 		var value = this.$input.val().trim();
 

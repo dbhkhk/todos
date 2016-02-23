@@ -27,7 +27,7 @@ app.AppView = Backbone.View.extend({
 
 		// trigger a model's 'visible' event when its 'completed' state is changed
 		this.listenTo(app.Todos, 'change:completed', this.filterOne);
-		this.lestenTo(app.Todos, 'filter', this.filterAll);
+		this.listenTo(app.Todos, 'filter', this.filterAll);
 		this.listenTo(app.Todos, 'all', this.render);
 
 		app.Todos.fetch(); // fetch models for app.Todos collection

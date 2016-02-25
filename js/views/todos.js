@@ -10,7 +10,7 @@ app.TodoView = Backbone.View.extend({
 	events: {
 		'click .toggle':  'toggleCompleted', // click the checkbox in front of each item to toggle 'completed'
 		'click .destroy': 'clear', // click the 'x' following the item to clear
-		'dbclick label':  'edit', // double click on item title to edit the title
+		'dblclick label':  'edit', // double click on item title to edit the title
 		'keypress .edit': 'updateOnEnter',
 		'blur .edit':     'close'
 	},

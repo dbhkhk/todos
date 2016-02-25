@@ -41,4 +41,4 @@ var TodoList = Backbone.Collection.extend({
 });
 
 // create our global collection of todos
-app.Todos = new TodoList(); // why use capital T?
+app.Todos = new TodoList();
